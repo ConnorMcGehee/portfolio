@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contact-style.css">
+
+    <title>Contact Me</title>
+</head>
+
+<body>
+    <nav><a href="index.html">INDEX</a> <a href="about.html">ABOUT</a> <a href="contact.html">CONTACT</a></nav>
+    <hr>
+    <h1>Contact Me</h1>
+    <form action="results.html" method="POST" target="_blank">
+        <label for="email">Email *</label><br>
+        <input type="email" id="email" required><br><br>
+
+        <label for="comments">Comments *</label><br>
+        <div id="commentsContainer"><textarea name="comments" id="comments" minlength="20" maxlength="500" required></textarea></div><br>
+
+        How did you hear about me?<br>
+        <input type="checkbox" id="classmate" name="classmate" value="classmate">
+        <label for="classmate">Classmate</label><br>
+        <input type="checkbox" id="resume" name="resume" value="resume">
+        <label for="resume">Resume Submission</label><br>
+        <input type="checkbox" id="linkedin" name="linkedin" value="linkedin">
+        <label for="linkedin">LinkedIn</label><br>
+        <input type="checkbox" id="academy" name="academy" value="academy">
+        <label for="academy">Coding Academy Rec</label><br><br>
+
+        Would you like to be contacted back?<br>
+        <input type="radio" id="yes" name="contactback" value="yes" checked="checked">
+        <label for="yes">Yes</label><br>
+        <input type="radio" id="no" name="contactback" value="no">
+        <label for="no">No</label><br><br>
+
+        Enter your birthday if you'd like to receive a Birthday Wish<br>
+        <label for="birthday" style="display: none;">Birthday</label>
+        <input type="date" name="birthday" id="birthday"><br>
+
+        <input type="submit" id="submitbutton">
+    </form>
+</body>
+
+</html>
