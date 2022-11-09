@@ -5,49 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="normalize.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contact-style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 
-    <title>Contact Me</title>
+    <link rel="stylesheet" href="./normalize.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./contact.css">
+
+    <script src="./scripts.js" defer></script>
+
+    <title>Contact</title>
 </head>
 
 <body>
-    <nav><a href="index.html">INDEX</a> <a href="about.html">ABOUT</a> <a href="contact.html">CONTACT</a></nav>
+    <img src="./menu.svg" alt="Menu button" id="menu-button">
+    <nav id="nav">
+        <ul id="nav-list">
+            <li><a href="./index.html" id="index-link" class="nav-link">HOME</a></li>
+            <li><a href="./about.html" id="about-link" class="nav-link">ABOUT</a></li>
+            <li><a href="./portfolio.html" id="portfolio-link" class="nav-link">PORTFOLIO</a></li>
+            <li><a href="./resume.html" id="resume-link" class="nav-link">RÉSUMÉ</a></li>
+            <li><a href="./contact.html" id="contact-link" class="nav-link">CONTACT</a></li>
+        </ul>
+    </nav>
     <hr>
-    <h1>Contact Me</h1>
-    <form>
-        <label for="email">Email *</label><br>
-        <input type="email" id="email" required><br><br>
+    <main>
+        <h1>Contact Me</h1>
+        <form>
+            <label for="name">Name *</label><br>
+            <input type="text" id="name" required><br><br>
 
-        <label for="comments">Comments *</label><br>
-        <div id="commentsContainer"><textarea name="comments" id="comments" minlength="20" maxlength="500" required></textarea></div><br>
+            <label for="email">Email *</label><br>
+            <input type="email" id="email" required><br><br>
 
-        How did you hear about me?<br>
-        <input type="checkbox" id="classmate" name="classmate" value="classmate">
-        <label for="classmate">Classmate</label><br>
-        <input type="checkbox" id="resume" name="resume" value="resume">
-        <label for="resume">Resume Submission</label><br>
-        <input type="checkbox" id="linkedin" name="linkedin" value="linkedin">
-        <label for="linkedin">LinkedIn</label><br>
-        <input type="checkbox" id="academy" name="academy" value="academy">
-        <label for="academy">Coding Academy Rec</label><br><br>
+            <label for="message">Message *</label><br>
+            <div id="messageContainer">
+                <textarea name="message" id="message" maxlength="1000" required></textarea>
+            </div><br>
 
-        Would you like to be contacted back?<br>
-        <input type="radio" id="yes" name="contactback" value="yes" checked="checked">
-        <label for="yes">Yes</label><br>
-        <input type="radio" id="no" name="contactback" value="no">
-        <label for="no">No</label><br><br>
-
-        Enter your birthday if you'd like to receive a Birthday Wish<br>
-        <label for="birthday" style="display: none;">Birthday</label>
-        <input type="date" name="birthday" id="birthday"><br>
-
-        <input type="submit" id="submitbutton">
-    </form>
+            <input type="submit" id="submitbutton">
+        </form>
+    </main>
 </body>
 
 </html>

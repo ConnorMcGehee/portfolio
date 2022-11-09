@@ -1,20 +1,140 @@
 body {
-    margin: 1rem 1rem 1rem 1rem;
-    background: #303030;
-    color: lightgrey;
-    font-family: 'Raleway', sans-serif;
+    margin: 1rem;
+    background: rgb(3, 8, 3);
+    background: linear-gradient(141deg, rgba(3, 8, 3, 1) 0%, rgba(8, 23, 12, 1) 74%, rgba(16, 37, 28, 1) 100%);
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    ;
+}
+
+#index-link {
+    border-top: 0.08rem white solid;
+}
+
+hr {
+    display: none;
+    margin-bottom: 1.25rem;
+}
+
+#index-link:hover,
+#about-link:hover,
+#portfolio-link:hover,
+#resume-link:hover,
+#contact-link:hover {
+    background: #004134;
 }
 
 a {
-    color: lightgrey;
+    color: white;
+    text-decoration: none;
 }
 
+#index-link:hover,
 a:hover {
-    color: #b5b5b5;
+    color: #00ffcc;
+    text-decoration: underline;
 }
 
-nav {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 0.95rem;
+#nav {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 9999;
+}
+
+#nav-list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    background: #006c56;
+    color: white;
+    border: 0.08rem white solid;
+    border-top: none;
+    margin: 0;
+    display: block;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+#nav-list {
+    list-style: none;
+}
+
+h1,
+h2 {
+    margin: 0;
+    font-weight: 400;
+}
+
+#menu-button {
+    width: 2rem;
+    text-align: right;
+    display: block;
+    margin-left: auto;
+}
+
+@media (min-width: 40.063em) {
+
+    main {
+        margin: auto;
+        max-width: 64rem;
+    }
+
+    #nav {
+        position: relative;
+        width: initial;
+        left: initial;
+        transform: initial;
+    }
+
+    hr {
+        display: block;
+    }
+
+    .nav-link,
+    #index-link {
+        background: none;
+        color: white;
+        border: none;
+        padding: 0;
+        font-size: 1.5rem;
+    }
+
+    #nav-list {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin: auto;
+    }
+
+    #index-link:hover,
+    #about-link:hover,
+    #portfolio-link:hover,
+    #resume-link:hover,
+    #contact-link:hover {
+        background: none;
+        font-weight: 400;
+    }
+
+    #menu-button {
+        display: none;
+    }
+}
+
+@media (min-width: 90.063em) {
+    #nav-list {
+        justify-content: center;
+    }
 }
