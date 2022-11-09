@@ -16,7 +16,12 @@ figure {
     height: 9rem;
     object-fit: cover;
     object-position: top;
-    border: white solid 0.063rem;
+    border: white solid 0.1rem;
+    border-radius: 1rem;
+}
+
+#portfolio img:hover {
+    border: #00ffcc solid 0.1rem;
 }
 
 figcaption {
