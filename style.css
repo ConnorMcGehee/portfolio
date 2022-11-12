@@ -9,7 +9,7 @@ body {
 }
 
 #index-link {
-    border-top: 0.08rem white solid;
+    border-top: 0.08rem #00ffcc solid;
 }
 
 hr {
@@ -22,7 +22,7 @@ hr {
 #portfolio-link:hover,
 #resume-link:hover,
 #contact-link:hover {
-    background: #004134;
+    background: #005443;
 }
 
 a {
@@ -54,17 +54,18 @@ a:hover {
 }
 
 .nav-link {
-    background: #006c56;
+    background: #00755e;
     color: white;
-    border: 0.08rem white solid;
+    border: 0.08rem #00ffcc solid;
     border-top: none;
     margin: 0;
     display: block;
     padding: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     text-decoration: none;
     font-size: 1.25rem;
+    text-align: center;
 }
 
 #nav-list {
