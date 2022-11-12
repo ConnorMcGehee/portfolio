@@ -22,15 +22,16 @@ menuButton.addEventListener("click", (e) => {
     e.stopPropagation();
 });
 
-window.addEventListener("click", () => {
-    if (isNavOpen) {
+let navElement = document.querySelector('nav');
+window.addEventListener("click", (event) => {
+    if (isNavOpen && !navElement.contains(event.target)) {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
     }
 })
-window.addEventListener("touchend", () => {
-    if (isNavOpen) {
+window.addEventListener("touchstart", (event) => {
+    if (isNavOpen && !navElement.contains(event.target))  {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
