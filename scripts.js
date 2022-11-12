@@ -29,7 +29,7 @@ window.addEventListener("click", () => {
         isNavOpen = false;
     }
 })
-window.addEventListener("touchstart", () => {
+window.addEventListener("touchend", () => {
     if (isNavOpen) {
         navList.style.display = "none";
         menuButton.style.filter = "none";
