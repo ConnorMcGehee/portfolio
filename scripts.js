@@ -29,6 +29,13 @@ window.addEventListener("click", () => {
         isNavOpen = false;
     }
 })
+window.addEventListener("touchstart", () => {
+    if (isNavOpen) {
+        navList.style.display = "none";
+        menuButton.style.filter = "none";
+        isNavOpen = false;
+    }
+})
 
 menuButton.addEventListener("mouseover", () => {
 
