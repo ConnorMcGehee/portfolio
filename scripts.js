@@ -28,6 +28,7 @@ window.addEventListener("click", (event) => {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
+        e.stopPropagation();
     }
 })
 window.addEventListener("touchstart", (event) => {
@@ -35,6 +36,7 @@ window.addEventListener("touchstart", (event) => {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
+        e.stopPropagation();
     }
 })
 
