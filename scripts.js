@@ -24,7 +24,7 @@ menuButton.addEventListener("click", (e) => {
 
 let navElement = document.querySelector('nav');
 window.addEventListener("click", (event) => {
-    if (isNavOpen && !navElement.contains(event.target)) {
+    if (isNavOpen && !navElement.contains(event.target) && !menuButton.contains(event.target)) {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
