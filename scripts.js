@@ -28,15 +28,13 @@ window.addEventListener("click", (event) => {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
-        e.stopPropagation();
     }
 })
 window.addEventListener("touchstart", (event) => {
-    if (isNavOpen && !navElement.contains(event.target))  {
+    if (isNavOpen && !navElement.contains(event.target) && !menuButton.contains(event.target))  {
         navList.style.display = "none";
         menuButton.style.filter = "none";
         isNavOpen = false;
-        e.stopPropagation();
     }
 })
 
