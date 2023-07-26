@@ -36,4 +36,4 @@ const towersOfHanoi: Website = {
     id: "towers-of-hanoi"
 };
 
-export const websites = writable([playvert, breweryLocator, mastermind, towersOfHanoi]);
+export const websites = writable([towersOfHanoi, mastermind, breweryLocator, playvert]);
