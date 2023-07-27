@@ -1,4 +1,5 @@
-# Connor McGehee
+
+# [Connor McGehee Portfolio](https://connormcgehee.github.io/portfolio/)
 
 ## Projects
 
@@ -15,4 +16,4 @@ Mastermind is a JavaScript game based off of the Israelian code-breaking board g
 Towers of Hanoi is a JavaScript game based off the popular mathematical puzzle. Written in vanilla JS, CSS, and HTML.
 
 ### [Portfolio](https://connormcgehee.github.io/portfolio/)
-Written in TypeScript using Svelte.
+Dating app-style project showcase written in TypeScript using Svelte/SvelteKit.
