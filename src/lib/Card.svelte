@@ -1,12 +1,17 @@
 <script lang="ts">
     import { websites, getX } from "./stores";
-    import { draggable, type DragEventData, type DragOptions } from "./drag-core";
+    import {
+        draggable,
+        type DragEventData,
+        type DragOptions,
+    } from "./drag-core";
+    import { spring } from "svelte/motion";
 
     export let website: import("./types").Website;
     export let index: number;
     let isDragged = false;
-    let useTransitions = false;
     let opacity = 1;
+    let initialized = false;
 
     let swipeClass: string | null = null;
 
@@ -42,9 +47,6 @@
     }
 
     async function onDragEnd() {
-        useTransitions = true;
-        opacity = 1;
-
         let isSwiped = Math.abs($getX) > THRESHOLD;
 
         if ($getX < -THRESHOLD) {
@@ -52,35 +54,24 @@
         } else if ($getX > THRESHOLD) {
             swipeClass = "swipe-right";
         }
-
-        setTimeout(() => {
-            useTransitions = false;
-            if ($getX === 0) {
-                isDragged = false;
-            }
-        }, 200); // ms should be the duration of the CSS transition
-
+        isDragged = false;
         if (isSwiped) {
+            setPositionX($getX);
             nextCard();
+        } else {
+            opacity = 1;
+            setPositionX(0);
         }
-
-        setPositionX(0);
     }
 
     function nextCard() {
-        let websitesCopy = [...$websites];
-        const swipedWebsite = websitesCopy.splice(index, 1)[0];
-        websitesCopy.unshift(swipedWebsite);
-        $websites = websitesCopy;
-        dragOptions = { axis: "none" };
-        dragOptions = {
-            axis: "y",
-            legacyTranslate: false,
-            position: position,
-            onDrag: onDrag,
-            onDragEnd: onDragEnd,
-        };
-        dragOptions = dragOptions;
+        initialized = false;
+        getX.set(0);
+        websites.update((websites) => {
+            const swipedWebsite = websites.splice(index, 1)[0];
+            websites.unshift(swipedWebsite);
+            return websites;
+        });
     }
 
     function setPositionX(x: number) {
@@ -88,7 +79,7 @@
         getX.set(x);
     }
 
-    let rotation = 0;
+    const rotation = spring(0, { stiffness: 0.08, damping: 0.3 });
 
     $: {
         let normalizedX = Math.abs($getX) / THRESHOLD;
@@ -96,19 +87,19 @@
         switch (index) {
             case $websites.length - 2:
                 degrees = -7 * (1 - normalizedX);
-                rotation = degrees <= 0 ? degrees : 0;
+                rotation.set(degrees <= 0 ? degrees : 0);
                 break;
             case $websites.length - 3:
                 degrees = 7 * (1 - normalizedX * 2);
-                rotation = degrees >= -7 ? degrees : -7;
+                rotation.set(degrees >= -7 ? degrees : -7);
                 break;
             default:
-                rotation = 0;
+                rotation.set(0);
         }
     }
 
     function onClick(e: MouseEvent) {
-        if (isDragged || !isTopCard) {
+        if ($getX === 0 || !isTopCard) {
             e.preventDefault();
         }
     }
@@ -118,13 +109,21 @@
     <img
         use:draggable={dragOptions}
         draggable="false"
-        class="card"
+        class="card {swipeClass}"
         class:behind={!isTopCard}
-        class:dragged={isTopCard && !useTransitions}
+        class:dragged={isDragged}
         src={website.imageSrc}
         alt="Screenshot of ${website.title}"
-        style="opacity: {opacity};
-            rotate: {rotation}deg;"
+        style="rotate: {$rotation}deg;
+            opacity: {index < $websites.length - 3 && !swipeClass ? 0 : opacity};
+            z-index: {swipeClass ? $websites.length : index};"
+        on:animationend={() => {
+            setPositionX(0);
+            setTimeout(() => {
+                opacity = 1;
+                swipeClass = null;
+            }, 100);
+        }}
     />
 </a>
 
@@ -138,17 +137,43 @@
         border: solid white 0.2rem;
         position: absolute;
         translate: -50%;
-        transition: all 0.2s ease-in-out;
+        transition: transform 0.2s ease-in-out;
         -webkit-user-select: none;
         user-select: none;
+    }
+
+    .behind {
+        cursor: default;
+        pointer-events: none;
     }
 
     .dragged {
         transition: none;
     }
 
-    .behind {
-        cursor: default;
-        pointer-events: none;
+    @keyframes swipeLeft {
+        100% {
+            translate: calc(-10rem - 50%);
+            opacity: 0;
+        }
+    }
+
+    @keyframes swipeRight {
+        100% {
+            translate: calc(10rem - 50%);
+            opacity: 0;
+        }
+    }
+
+    .swipe-left {
+        transition: none;
+        z-index: 9999;
+        animation: swipeLeft 0.3s ease-out forwards;
+    }
+
+    .swipe-right {
+        transition: none;
+        z-index: 9999;
+        animation: swipeRight 0.3s ease-out forwards;
     }
 </style>
