@@ -1,6 +1,5 @@
-export interface Website {
+export interface Project {
     title: string,
     imageSrc: string,
-    url: string,
-    id: string
+    url: string
 }
