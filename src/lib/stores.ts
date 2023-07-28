@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { readable, writable } from 'svelte/store';
 
 export const getX = writable(0);
 
@@ -30,30 +30,6 @@ const towersOfHanoi: Project = {
     title: "Towers of Hanoi",
     imageSrc: towersOfHanoiImage,
     url: "https://connormcgehee.github.io/TowersOfHanoi/"
-};
-
-const playvert1: Project = {
-    title: "Playvert",
-    imageSrc: playvertImage,
-    url: "https://playvert.com1"
-};
-
-const breweryLocator1: Project = {
-    title: "Brewery Locator",
-    imageSrc: breweryLocatorImage,
-    url: "https://connormcgehee.github.io/Brewery-Locator/1"
-};
-
-const mastermind1: Project = {
-    title: "Mastermind",
-    imageSrc: mastermindImage,
-    url: "https://connormcgehee.github.io/Mastermind/1"
-};
-
-const towersOfHanoi1: Project = {
-    title: "Towers of Hanoi",
-    imageSrc: towersOfHanoiImage,
-    url: "https://connormcgehee.github.io/TowersOfHanoi/1"
 };
 
 export const projects = writable(
