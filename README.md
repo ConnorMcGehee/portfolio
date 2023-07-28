@@ -4,7 +4,7 @@
 ## Projects
 
 ### [Playvert](https://playvert.com)
-Playvert is a versatile web application designed for sharing playlists across multiple music streaming platforms. Playvert is service-agnostic, and allows users to share their favorite playlists with friends seamlessly, regardless of the music streaming service each person prefers.
+Playvert is a versatile web application designed for sharing playlists across multiple music streaming platforms.
 
 ### [Brewery Locator](https://connormcgehee.github.io/Brewery-Locator/)
 Brewery Locator uses the [Open Brewery DB](https://www.openbrewerydb.org) API to locate and display the nearest breweries to the user.
