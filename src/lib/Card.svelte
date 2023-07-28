@@ -90,7 +90,7 @@
     }
 
     function onClick(e: MouseEvent) {
-        if (!isTopCard || $getX === 0) {
+        if (!isTopCard || $getX !== 0) {
             e.preventDefault();
         }
     }
