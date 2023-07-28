@@ -19,6 +19,8 @@
         { stiffness: 0.1, damping: 0.3 }
     );
 
+    const maxWidth = spring(17, { stiffness: 0.08, damping: 0.5 });
+
     function dislikeClick() {
         swipe("left");
     }
@@ -26,10 +28,22 @@
     function loveClick() {
         swipe("right");
     }
+
+    let innerWidth = 0;
+
+    $: {
+        if (innerWidth < 384) {
+            maxWidth.set(14);
+        } else {
+            maxWidth.set(17);
+        }
+    }
 </script>
 
+<svelte:window bind:innerWidth />
+
 <div id="projects">
-    <div id="cards-container">
+    <div id="cards-container" style="width: {$maxWidth}rem;">
         {#each $projects as project, index (project.url)}
             <Card {project} {index} />
         {/each}
@@ -48,10 +62,8 @@
     <button
         on:click={() => dislikeClick()}
         class="dislike icon"
-        on:mouseover={() => dislikeSize.set({ width: 4.25, font: 2.75 })}
-        on:focus={() => dislikeSize.set({ width: 4.25, font: 2.75 })}
-        on:mouseleave={() => dislikeSize.set({ width: 3.5, font: 2 })}
-        on:blur={() => dislikeSize.set({ width: 3.5, font: 2 })}
+        on:pointerover={() => dislikeSize.set({ width: 4.25, font: 2.4 })}
+        on:pointerleave={() => dislikeSize.set({ width: 3.5, font: 1.65 })}
         style="width: {$dislikeSize.width}rem;
         font-size: {$dislikeSize.font}rem;"
     >
@@ -60,10 +72,8 @@
     <button
         on:click={() => loveClick()}
         class="love icon"
-        on:mouseover={() => loveSize.set({ width: 4.25, font: 2.4 })}
-        on:focus={() => loveSize.set({ width: 4.25, font: 2.4 })}
-        on:mouseleave={() => loveSize.set({ width: 3.5, font: 1.65 })}
-        on:blur={() => loveSize.set({ width: 3.5, font: 1.65 })}
+        on:pointerover={() => loveSize.set({ width: 4.25, font: 2.4 })}
+        on:pointerleave={() => loveSize.set({ width: 3.5, font: 1.65 })}
         style="width: {$loveSize.width}rem;
         font-size: {$loveSize.font}rem;"
     >
@@ -86,7 +96,7 @@
         column-gap: 25vw;
         row-gap: 1rem;
         justify-items: center;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         max-width: 70rem;
     }
 
@@ -94,13 +104,13 @@
         position: relative;
         grid-area: card;
         width: 72vw;
-        max-width: 17rem;
-        max-height: 58dvh;
+        max-height: 50vh;
         aspect-ratio: 9/16;
     }
 
     .title {
         grid-area: title;
+        z-index: 9999;
     }
 
     .title h2 {
@@ -121,6 +131,7 @@
         user-select: none;
         z-index: 9999;
         background: none;
+        margin-bottom: 1rem;
     }
 
     .dislike {
@@ -144,12 +155,6 @@
     .love,
     .dislike {
         align-self: center;
-    }
-
-    a,
-    a:visited {
-        color: inherit;
-        text-decoration: none;
     }
 
     @media (min-width: 31.25rem) {

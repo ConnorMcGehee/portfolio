@@ -6,6 +6,9 @@
         type DragOptions,
     } from "./drag-core";
     import { spring } from "svelte/motion";
+    import Fa from "svelte-fa";
+    import { faGithub } from "@fortawesome/free-brands-svg-icons";
+    import { faLink } from "@fortawesome/free-solid-svg-icons";
 
     export let project: import("./types").Project;
     export let index: number;
@@ -13,8 +16,11 @@
     const THRESHOLD = 75;
     let position = { x: 0, y: 0 };
     let opacity = spring(1, { stiffness: 0.08, damping: 0.5 });
+    let cardHoverStyle = spring(
+        { width: 17, translateZ: 0 },
+        { stiffness: 0.08, damping: 0.5 }
+    );
     let swipeClass: string | null = null;
-    let isDragged = false;
     let dragOptions: DragOptions;
     let isTopCard = false;
 
@@ -30,12 +36,10 @@
 
     function onDrag({ offsetX: x }: DragEventData) {
         getX.set(x);
-        isDragged = x !== 0;
         opacity.set(1 - Math.abs(x / 375));
     }
 
     function onDragEnd() {
-        isDragged = false;
         const isSwiped = Math.abs($getX) > THRESHOLD;
         if (isSwiped) {
             const direction = $getX < -THRESHOLD ? "left" : "right";
@@ -89,50 +93,125 @@
         }
     }
 
-    function onClick(e: MouseEvent) {
-        if (!isTopCard || $getX !== 0) {
-            e.preventDefault();
+    let innerWidth = 0;
+    let smallScreen = false;
+
+    $: {
+        if (innerWidth < 384) {
+            cardHoverStyle.update((style) => {
+                return { ...style, width: 14 };
+            });
+            smallScreen = true;
+        } else {
+            cardHoverStyle.update((style) => {
+                return { ...style, width: 17 };
+            });
+            smallScreen = false;
         }
+        console.log(smallScreen);
     }
 </script>
 
-<a draggable="false" target="_blank" href={project.url} on:click={onClick}>
+<svelte:window bind:innerWidth />
+
+<figure
+    draggable="false"
+    use:draggable={dragOptions}
+    class="card {swipeClass}"
+    class:behind={!isTopCard}
+    style="rotate: {$rotation}deg;
+            opacity: {$opacity};
+            z-index: {swipeClass ? $projects.length : index};
+            width: {$cardHoverStyle.width}rem;
+            left: {$cardHoverStyle.translateZ}rem;
+            top: {$cardHoverStyle.translateZ}rem;"
+    on:animationend={() => {
+        if (!smallScreen) cardHoverStyle.set({ width: 17, translateZ: 0 });
+        setPositionX(0);
+        setTimeout(() => {
+            opacity.set(1);
+            swipeClass = null;
+        }, 100);
+    }}
+    on:pointerover={() => {
+        if (isTopCard && !smallScreen)
+            cardHoverStyle.set({ width: 18, translateZ: -0.5 });
+    }}
+    on:pointerleave={() => {
+        if (isTopCard && !smallScreen)
+            cardHoverStyle.set({ width: 17, translateZ: 0 });
+    }}
+>
     <img
-        use:draggable={dragOptions}
         draggable="false"
-        class="card {swipeClass}"
-        class:behind={!isTopCard}
         src={project.imageSrc}
         alt="Screenshot of {project.title}"
-        style="rotate: {$rotation}deg;
-            opacity: {$opacity};
-            z-index: {swipeClass ? $projects.length : index};"
-        on:animationend={() => {
-            setPositionX(0);
-            setTimeout(() => {
-                opacity.set(1);
-                swipeClass = null;
-            }, 100);
-        }}
     />
-</a>
+    <figcaption class="description">
+        <p>{project.description}</p>
+        <a href={project.repo} target="_blank">
+            <Fa icon={faGithub} />&nbsp;&nbsp;&nbsp;&nbsp;Github Repository
+        </a>
+        <a href={project.url} target="_blank">
+            <Fa icon={faLink} />&nbsp;&nbsp;&nbsp;Visit Site
+        </a>
+    </figcaption>
+</figure>
 
 <style>
     .card {
-        width: 17rem;
-        aspect-ratio: 9 / 16;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 0.5rem;
-        border: solid white 0.2rem;
         position: absolute;
         -webkit-user-select: none;
         user-select: none;
+        margin: 0;
+        cursor: move;
     }
 
-    .behind {
+    .card img {
+        width: 100%;
+        max-height: 50vh;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        object-position: top;
+        border: solid rgb(228, 228, 228) 0.2rem;
+        border-radius: 0.5rem;
+        -webkit-box-shadow: 4px 4px 32px 3px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 4px 4px 32px 3px rgba(0, 0, 0, 0.75);
+        box-shadow: 4px 4px 32px 3px rgba(0, 0, 0, 0.75);
+    }
+
+    .description {
+        position: absolute;
+        box-sizing: border-box;
+        left: 0.2rem;
+        bottom: 0.4rem;
+        padding: 1rem;
+        width: 100%;
+        background: rgb(10, 2, 26);
+        background: linear-gradient(
+            0deg,
+            rgba(10, 2, 26, 0.8) 70%,
+            rgba(10, 2, 26, 0.7) 76%,
+            rgba(10, 2, 26, 0) 100%
+        );
+        border-radius: 0 0 0.25rem 0.25rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .description p {
+        margin: 0;
+        margin-top: 2rem;
+        width: 12rem;
+    }
+
+    .behind img {
         cursor: default;
         pointer-events: none;
+        -webkit-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.13);
+        -moz-box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.13);
+        box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.13);
     }
 
     @keyframes swipeLeft {
@@ -153,5 +232,28 @@
 
     .swipe-right {
         animation: swipeRight 0.3s ease-out forwards;
+    }
+
+    @media (hover) {
+        .description {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        figure:hover .description {
+            opacity: 1;
+        }
+    }
+
+    @media (min-width: 24rem) {
+        .description p {
+            width: 15rem;
+        }
+    }
+
+    @media (min-width: 24rem) and (hover) {
+        .description p {
+            width: 16rem;
+        }
     }
 </style>
