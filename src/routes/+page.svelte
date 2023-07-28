@@ -234,6 +234,10 @@
         transition: width 0.5s ease;
     }
 
+    #projects-section {
+        margin-top: 0.5rem;
+    }
+
     @media (hover) {
         #header:hover,
         #header:hover #headshot {

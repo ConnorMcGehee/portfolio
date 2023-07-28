@@ -96,6 +96,7 @@
         column-gap: 25vw;
         row-gap: 1rem;
         justify-items: center;
+        margin: auto;
         margin-top: 1.5rem;
         max-width: 70rem;
     }
