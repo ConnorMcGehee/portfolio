@@ -6,34 +6,57 @@ import playvertImage from "$lib/assets/websites/playvert.jpg";
 import breweryLocatorImage from "$lib/assets/websites/brewery-locator.jpg";
 import mastermindImage from "$lib/assets/websites/mastermind.jpg";
 import towersOfHanoiImage from "$lib/assets/websites/towers-of-hanoi.jpg";
-import type { Website } from './types';
+import type { Project } from './types';
 
-const playvert: Website = {
+const playvert: Project = {
     title: "Playvert",
     imageSrc: playvertImage,
-    url: "https://playvert.com",
-    id: "playvert"
+    url: "https://playvert.com"
 };
 
-const breweryLocator: Website = {
+const breweryLocator: Project = {
     title: "Brewery Locator",
     imageSrc: breweryLocatorImage,
-    url: "https://connormcgehee.github.io/Brewery-Locator/",
-    id: "brewery-locator"
+    url: "https://connormcgehee.github.io/Brewery-Locator/"
 };
 
-const mastermind: Website = {
+const mastermind: Project = {
     title: "Mastermind",
     imageSrc: mastermindImage,
-    url: "https://connormcgehee.github.io/Mastermind/",
-    id: "mastermind"
+    url: "https://connormcgehee.github.io/Mastermind/"
 };
 
-const towersOfHanoi: Website = {
+const towersOfHanoi: Project = {
     title: "Towers of Hanoi",
     imageSrc: towersOfHanoiImage,
-    url: "https://connormcgehee.github.io/TowersOfHanoi/",
-    id: "towers-of-hanoi"
+    url: "https://connormcgehee.github.io/TowersOfHanoi/"
 };
 
-export const websites = writable([towersOfHanoi, mastermind, breweryLocator, playvert]);
+const playvert1: Project = {
+    title: "Playvert",
+    imageSrc: playvertImage,
+    url: "https://playvert.com1"
+};
+
+const breweryLocator1: Project = {
+    title: "Brewery Locator",
+    imageSrc: breweryLocatorImage,
+    url: "https://connormcgehee.github.io/Brewery-Locator/1"
+};
+
+const mastermind1: Project = {
+    title: "Mastermind",
+    imageSrc: mastermindImage,
+    url: "https://connormcgehee.github.io/Mastermind/1"
+};
+
+const towersOfHanoi1: Project = {
+    title: "Towers of Hanoi",
+    imageSrc: towersOfHanoiImage,
+    url: "https://connormcgehee.github.io/TowersOfHanoi/1"
+};
+
+export const projects = writable(
+    [towersOfHanoi, mastermind, breweryLocator, playvert]);
+
+export const swipeEvent = writable("");
