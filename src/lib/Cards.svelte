@@ -133,6 +133,7 @@
         z-index: 9999;
         background: none;
         margin-bottom: 1rem;
+        touch-action: manipulation;
     }
 
     .dislike {

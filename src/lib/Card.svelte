@@ -108,7 +108,6 @@
             });
             smallScreen = false;
         }
-        console.log(smallScreen);
     }
 </script>
 
