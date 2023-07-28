@@ -66,6 +66,10 @@
         <img src={headshot} alt="Headshot" id="headshot" />
         <h1>Connor McGehee</h1>
     </button>
+    <p>
+        Web Developer with a flair for aesthetically appealing and
+        high-performing digital interfaces.
+    </p>
     {#if menuOpen}
         <div id="menu" transition:fly={{ y: -150 }}>
             <button id="close" on:click={() => (menuOpen = false)}>
@@ -103,6 +107,24 @@
             </span>
         </h2>
         <Cards />
+    </section>
+
+    <section id="skills-section">
+        <hr />
+        <h2>{"<skills />"}</h2>
+        <ul id="skills">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>TypeScript</li>
+            <li>React</li>
+            <li>Svelte</li>
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>Git</li>
+            <li>Vite</li>
+            <li>RESTful APIS</li>
+        </ul>
     </section>
 
     <section id="contact-section">
@@ -222,6 +244,7 @@
         flex-direction: column;
         align-items: center;
         height: 100dvh;
+        text-align: center;
     }
 
     #headshot {
@@ -272,5 +295,14 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
+    }
+
+    #skills {
+        width: 10rem;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: auto;
+        margin-bottom: 1rem;
     }
 </style>
