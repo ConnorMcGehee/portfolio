@@ -31,6 +31,11 @@
             url: "https://twitter.com/ConnorMcGehee5",
             icon: faTwitter,
         },
+        {
+            name: "Email",
+            url: "mailto:connormcgehee5@gmail.com",
+            icon: faEnvelope,
+        },
     ];
 </script>
 
@@ -127,7 +132,7 @@
         </ul>
     </section>
 
-    <section id="contact-section">
+    <section id="link-section">
         <hr />
         <h2>
             <span
@@ -139,7 +144,7 @@
                 <Fa icon={faAnglesUp} />
             </span>
             &nbsp;
-            {"<contact />"}
+            {"<links />"}
         </h2>
         <ul>
             {#each socialLinks as link}
@@ -152,11 +157,6 @@
                     >
                 </li>
             {/each}
-            <li id="email">
-                <a href="mailto:connormcgehee5@gmail.com">
-                    <Fa icon={faEnvelope} />&nbsp;&nbsp;&nbsp;Email
-                </a>
-            </li>
         </ul>
     </section>
 </main>
@@ -259,6 +259,7 @@
 
     #projects-section {
         margin-top: 0.5rem;
+        text-align: left;
     }
 
     @media (hover) {
