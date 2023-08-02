@@ -9,6 +9,9 @@ Playvert is a versatile web application designed for sharing playlists across mu
 ### [Brewery Locator](https://connormcgehee.github.io/Brewery-Locator/)
 Brewery Locator uses the [Open Brewery DB](https://www.openbrewerydb.org) API to locate and display the nearest breweries to the user.
 
+### [Hangman](https://connormcgehee.github.io/Hangman/)
+Webgame that presents a secret phrase that the player can guess letter by letter. Made with vanilla JS.
+
 ### [Mastermind](https://connormcgehee.github.io/Mastermind/)
 Mastermind is a JavaScript game based off of the Israelian code-breaking board game. Written in vanilla JS, CSS, and HTML.
 
