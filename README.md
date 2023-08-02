@@ -4,10 +4,10 @@
 ## Projects
 
 ### [Playvert](https://playvert.com)
-Playvert is a versatile web application designed for sharing playlists across multiple music streaming platforms.
+Playvert is a versatile web application designed for sharing playlists across multiple music streaming platforms. Made with React.
 
 ### [Brewery Locator](https://connormcgehee.github.io/Brewery-Locator/)
-Brewery Locator uses the [Open Brewery DB](https://www.openbrewerydb.org) API to locate and display the nearest breweries to the user.
+Brewery Locator uses the [Open Brewery DB](https://www.openbrewerydb.org) API to locate and display the nearest breweries to the user. Made with vanilla JS.
 
 ### [Hangman](https://connormcgehee.github.io/Hangman/)
 Webgame that presents a secret phrase that the player can guess letter by letter. Made with vanilla JS.
