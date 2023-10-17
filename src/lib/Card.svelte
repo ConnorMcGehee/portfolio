@@ -7,7 +7,7 @@
 </script>
 
 <figure class="card">
-    <a href={project.url}><img src={project.imageSrc} alt="Screenshot of {project.title}" /></a>
+    <a href={project.url}><img src={project.imageSrc} alt="Screenshot links to {project.title} site" /></a>
     <figcaption class="description">
         <h3>{project.title}</h3>
         <a href={project.url} class="link-container" target="_blank">
