@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import headshot from "$lib/assets/headshot.jpg";
     import Cards from "$lib/Cards.svelte";
     import Fa from "svelte-fa";
@@ -7,14 +8,7 @@
         faLinkedin,
         faTwitter,
     } from "@fortawesome/free-brands-svg-icons";
-    import {
-        faXmark,
-        faEnvelope,
-        faAnglesUp,
-        faAnglesDown,
-    } from "@fortawesome/free-solid-svg-icons";
-    import { fly } from "svelte/transition";
-    let menuOpen = false;
+    import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
     const socialLinks = [
         {
             name: "Github",
@@ -37,6 +31,25 @@
             icon: faEnvelope,
         },
     ];
+
+    onMount(() => {
+        const anchors = document.querySelectorAll("a");
+
+        anchors.forEach((anchor) => {
+            if (anchor.querySelector(".svelte-fa, img")) {
+                anchor.style.borderBottomWidth = "0";
+                anchor.style.borderBottomStyle = "solid";
+                anchor.style.paddingBottom = "0";
+            }
+
+            const span = anchor.querySelector("span");
+            if (anchor.querySelector(".svelte-fa") && span) {
+                span.style.borderBottomWidth = "0.063rem";
+                span.style.borderBottomStyle = "solid";
+                span.style.paddingBottom = "0.188rem";
+            }
+        });
+    });
 </script>
 
 <svelte:head>
@@ -56,61 +69,21 @@
     />
 </svelte:head>
 
-<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-<main
-    on:click={() => (menuOpen = false)}
-    on:keydown={() => (menuOpen = !menuOpen)}
->
-    <button
-        id="header"
-        on:click={(e) => {
-            e.stopPropagation();
-            menuOpen = !menuOpen;
-        }}
-    >
-        <img src={headshot} alt="Headshot" id="headshot" />
+<header>
+    <div>
+        <img src={headshot} alt="Headshot of Connor McGehee" id="headshot" />
         <h1>Connor McGehee</h1>
-    </button>
+    </div>
     <p>
-        Web Developer with a flair for aesthetically appealing and
-        high-performing digital interfaces.
+        Web Developer specializing in high-performing, visually appealing, &
+        accessible interfaces.
     </p>
-    {#if menuOpen}
-        <div id="menu" transition:fly={{ y: -150 }}>
-            <button id="close" on:click={() => (menuOpen = false)}>
-                <Fa icon={faXmark} /> Close Menu
-            </button>
-            <ul>
-                {#each socialLinks as link}
-                    <li>
-                        <a
-                            href={link.url}
-                            target="_blank"
-                            on:click={(e) => e.stopPropagation()}
-                            ><Fa
-                                icon={link.icon}
-                            />&nbsp;&nbsp;&nbsp;{link.name}</a
-                        >
-                    </li>
-                {/each}
-            </ul>
-        </div>
-    {/if}
+</header>
 
+<main>
     <section id="projects-section">
         <hr />
-        <h2>
-            {"<projects />"}
-            &nbsp;
-            <span
-                on:pointerdown={() => {
-                    const element = document.querySelector("#email");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                }}
-            >
-                <Fa icon={faAnglesDown} />
-            </span>
-        </h2>
+        <h2>{"<projects />"}</h2>
         <Cards />
     </section>
 
@@ -129,32 +102,25 @@
             <li>Git</li>
             <li>Vite</li>
             <li>RESTful APIS</li>
+            <li>WordPress</li>
+            <li>A11y</li>
         </ul>
     </section>
 
     <section id="link-section">
         <hr />
-        <h2>
-            <span
-                on:pointerdown={() => {
-                    const element = document.querySelector("#header");
-                    element?.scrollIntoView({ behavior: "smooth" });
-                }}
-            >
-                <Fa icon={faAnglesUp} />
-            </span>
-            &nbsp;
-            {"<links />"}
-        </h2>
+        <h2>{"<links />"}</h2>
         <ul>
             {#each socialLinks as link}
                 <li>
                     <a
+                        class="link-container"
                         href={link.url}
                         target="_blank"
                         on:click={(e) => e.stopPropagation()}
-                        ><Fa icon={link.icon} />&nbsp;&nbsp;&nbsp;{link.name}</a
-                    >
+                        ><Fa icon={link.icon} />
+                        <span>{link.name}</span>
+                    </a>
                 </li>
             {/each}
         </ul>
@@ -162,24 +128,43 @@
 </main>
 
 <style>
-    :global(html) {
-        scroll-behavior: smooth;
-    }
-
     :global(body) {
         background-color: rgb(10, 2, 26);
         color: rgb(228, 228, 228);
         font-family: "Crimson Pro", serif;
-        position: relative;
-        height: 100dvh;
-        overflow-x: hidden;
         margin: 1rem;
     }
 
     :global(a, a:visited) {
-        color: inherit;
+        color: rgb(164, 214, 255);
         text-decoration: none;
         transition: color 0.25s ease-in-out;
+        border-bottom-width: 0.063rem;
+        border-bottom-style: solid;
+        padding-bottom: 0.188rem;
+        width: fit-content;
+    }
+
+    :global(a:has(.svelte-fa, img)) {
+        border-bottom-width: 0;
+        border-bottom-style: solid;
+        padding-bottom: 0;
+    }
+
+    :global(a:has(.svelte-fa) span) {
+        border-bottom-width: 0.063rem;
+        border-bottom-style: solid;
+        padding-bottom: 0.188rem;
+    }
+
+    :global(.link-container) {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    :global(.svelte-fa) {
+        width: 1.5rem;
     }
 
     @media (hover) {
@@ -190,9 +175,7 @@
 
     section h2 {
         text-align: center;
-        padding: 0.1rem;
         margin-bottom: 2rem;
-        width: 100vw;
     }
 
     hr {
@@ -201,42 +184,22 @@
         max-width: 70rem;
     }
 
-    #close {
-        display: flex;
-        background: none;
-        border: none;
-        color: rgb(243, 178, 178);
-        font-family: inherit;
-        font-size: 1rem;
-        cursor: pointer;
-        margin: auto;
-        gap: 0.3rem;
-        align-items: end;
-        transition: color 0.25s ease-in-out;
+    header {
+        text-align: center;
     }
 
-    #header {
-        background: none;
-        border: none;
-        color: inherit;
-        font-family: inherit;
+    header div {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         gap: 1rem;
-        transition: color 0.25s ease-in-out;
-        cursor: pointer;
     }
 
     h1 {
         margin: 0;
         font-weight: normal;
         font-size: 1.5rem;
-    }
-
-    section span {
-        cursor: pointer;
     }
 
     main {
@@ -262,44 +225,17 @@
         text-align: left;
     }
 
-    @media (hover) {
-        #header:hover,
-        #header:hover #headshot {
-            border-color: rgb(250, 255, 164);
-            color: rgb(250, 255, 164);
-        }
-
-        #close:hover {
-            color: rgb(239, 127, 127);
-        }
-    }
-
-    #menu {
-        position: absolute;
-        background: rgb(10, 2, 26, 0.85);
-        color: rgb(228, 228, 228);
-        padding: 1rem;
-        padding-bottom: 0;
-        border-radius: 0.5rem;
-        z-index: 10000;
-        transition: all 0.3s ease;
-        top: 4rem;
-        width: 100vw;
-        font-size: 1.25rem;
-        border: solid rgba(228, 228, 228, 0.85) 0.15rem;
-    }
-
     ul {
         list-style-type: none;
         padding: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.8rem;
     }
 
     #skills {
-        width: 10rem;
+        width: 18rem;
         flex-direction: row;
         justify-content: center;
         flex-wrap: wrap;
