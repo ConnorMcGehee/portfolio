@@ -63,16 +63,13 @@
         href="https://fonts.googleapis.com/css2?family=Crimson+Pro&display=swap"
         rel="stylesheet"
     />
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Connor McGehee</title>
 </svelte:head>
 
 <header>
     <div>
-        <img src={headshot} alt="Headshot of Connor McGehee" id="headshot" />
+        <img src={headshot} alt="Head shot of Connor McGehee" id="headshot" />
         <h1>Connor McGehee</h1>
     </div>
     <p>
@@ -84,13 +81,19 @@
 <main>
     <section id="projects-section">
         <hr />
-        <h2>{"<projects />"}</h2>
+        <h2>
+            <span class="visually-hidden">Projects</span>
+            <span aria-hidden="true">{"<projects />"}</span>
+        </h2>
         <Cards />
     </section>
 
     <section id="skills-section">
         <hr />
-        <h2>{"<skills />"}</h2>
+        <h2>
+            <span class="visually-hidden">Skills</span>
+            <span aria-hidden="true">{"<skills />"}</span>
+        </h2>
         <ul id="skills">
             <li>HTML</li>
             <li>CSS</li>
@@ -110,7 +113,10 @@
 
     <section id="link-section">
         <hr />
-        <h2>{"<links />"}</h2>
+        <h2>
+            <span class="visually-hidden">Links</span>
+            <span aria-hidden="true">{"<links />"}</span>
+        </h2>
         <ul>
             {#each socialLinks as link}
                 <li>
@@ -166,6 +172,17 @@
 
     :global(.svelte-fa) {
         width: 1.5rem;
+    }
+
+    :global(.visually-hidden) {
+        border: 0;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
     }
 
     @media (hover) {
