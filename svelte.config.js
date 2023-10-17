@@ -1,4 +1,3 @@
-import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import adapterStatic from '@sveltejs/adapter-static';
 
