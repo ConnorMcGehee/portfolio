@@ -20,6 +20,3 @@ Mastermind is a JavaScript game based off of the code-breaking board game by the
 
 ### [Towers of Hanoi](https://connormcgehee.github.io/TowersOfHanoi/)
 Towers of Hanoi is a JavaScript game based off the popular mathematical puzzle. Written in vanilla JS, CSS, and HTML.
-
-### [Portfolio](https://connormcgehee.github.io/portfolio/)
-Dating app-style project showcase written in TypeScript using Svelte/SvelteKit.
