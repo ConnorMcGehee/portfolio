@@ -5,9 +5,16 @@ import breweryLocatorImage from "$lib/assets/websites/brewery-locator.jpg";
 import mastermindImage from "$lib/assets/websites/mastermind.jpg";
 import towersOfHanoiImage from "$lib/assets/websites/towers-of-hanoi.jpg";
 import hangmanImage from "$lib/assets/websites/hangman.jpeg";
+import voxImage from "$lib/assets/websites/vox.jpg";
 import type { Project } from './types';
 
 export const projects = writable<Project[]>([
+    {
+        title: "Think Outside the Vox",
+        imageSrc: voxImage,
+        url: "https://thinkoutsidethevox.org",
+        description: "My team and I created the Think Outside the Vox website using WordPress as well as custom CSS and JavaScript, aiming for screen-reader accessibility and a clean, modern design."
+    },
     {
         title: "Playvert",
         imageSrc: playvertImage,

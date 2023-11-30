@@ -7,17 +7,24 @@
 </script>
 
 <figure class="card">
-    <a href={project.url}><img src={project.imageSrc} alt="Screenshot links to {project.title} site" /></a>
+    <a href={project.url}
+        ><img
+            src={project.imageSrc}
+            alt="Screenshot links to {project.title} site"
+        /></a
+    >
     <figcaption class="description">
         <h3>{project.title}</h3>
         <a href={project.url} class="link-container" target="_blank">
             <Fa icon={faLink} />
             <span>Link to {project.title}</span>
         </a>
-        <a href={project.repo} class="link-container" target="_blank">
-            <Fa icon={faGithub} />
-            <span>{project.title} Repository</span>
-        </a>
+        {#if project.repo}
+            <a href={project.repo} class="link-container" target="_blank">
+                <Fa icon={faGithub} />
+                <span>{project.title} Repository</span>
+            </a>
+        {/if}
         <p>{project.description}</p>
     </figcaption>
 </figure>
