@@ -16,7 +16,7 @@ Brewery Locator uses the [Open Brewery DB](https://www.openbrewerydb.org) API to
 Hangman is a webgame that presents a secret phrase that the player can guess letter by letter. Made with vanilla JS.
 
 ### [Mastermind](https://connormcgehee.github.io/Mastermind/)
-Mastermind is a JavaScript game based off of the Israelian code-breaking board game. Written in vanilla JS, CSS, and HTML.
+Mastermind is a JavaScript game based off of the code-breaking board game by the same name. Written in vanilla JS, CSS, and HTML.
 
 ### [Towers of Hanoi](https://connormcgehee.github.io/TowersOfHanoi/)
 Towers of Hanoi is a JavaScript game based off the popular mathematical puzzle. Written in vanilla JS, CSS, and HTML.

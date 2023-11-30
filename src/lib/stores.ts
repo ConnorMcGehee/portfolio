@@ -41,7 +41,7 @@ export const projects = writable<Project[]>([
         imageSrc: mastermindImage,
         url: "https://connormcgehee.github.io/Mastermind/",
         repo: "https://github.com/ConnorMcGehee/Mastermind",
-        description: "Mastermind is a JavaScript game based off of the Israelian code-breaking board game. Written in vanilla JS, CSS, and HTML."
+        description: "Mastermind is a JavaScript game based off of the code-breaking board game by the same name. Written in vanilla JS, CSS, and HTML."
     },
     {
         title: "Towers of Hanoi",
