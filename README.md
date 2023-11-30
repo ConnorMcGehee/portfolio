@@ -3,6 +3,9 @@
 
 ## Projects
 
+### [Think Outside the Vox](https://thinkoutsidethevox.org)
+My team and I created the Think Outside the Vox website using WordPress as well as custom CSS and JavaScript, aiming for screen-reader accessibility and a clean, modern design.
+
 ### [Playvert](https://playvert.com)
 Playvert is a versatile web application designed for sharing playlists across multiple music streaming platforms. Made with React.
 
